@@ -4,6 +4,7 @@ class Kos {
   final String alamat;
   final int hargaPerBulan;
   final int kamarTersedia;
+  final String foto;
 
   const Kos({
     required this.id,
@@ -11,5 +12,6 @@ class Kos {
     required this.alamat,
     required this.hargaPerBulan,
     required this.kamarTersedia,
+    required this.foto,
   });
 }

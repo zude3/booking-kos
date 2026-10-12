@@ -84,7 +84,7 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Booking gagal: $e'),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).colorScheme.error,
         ),
       );
     } finally {
@@ -114,7 +114,6 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
                 readOnly: true,
                 decoration: const InputDecoration(
                   labelText: 'Tanggal masuk',
-                  border: OutlineInputBorder(),
                   suffixIcon: Icon(Icons.calendar_today),
                 ),
                 onTap: _pilihTanggal,
@@ -133,7 +132,6 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
                   labelText: 'Durasi sewa (bulan)',
-                  border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
                   setState(() {
@@ -161,7 +159,6 @@ class _BookingFormScreenState extends State<BookingFormScreen> {
                 maxLines: 3,
                 decoration: const InputDecoration(
                   labelText: 'Catatan (opsional)',
-                  border: OutlineInputBorder(),
                 ),
               ),
 

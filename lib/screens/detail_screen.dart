@@ -1,8 +1,10 @@
+import 'package:booking_kos/widgets/kos_foto.dart';
 import 'package:flutter/material.dart';
 
 import '../models/kos.dart';
 import '../models/booking.dart';
 import 'booking_form_screen.dart';
+import '../widgets/kos_foto.dart';
 
 class DetailScreen extends StatefulWidget {
   final Kos kos;
@@ -23,47 +25,66 @@ class _DetailScreenState extends State<DetailScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(kos.nama)),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(kos.nama, style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 8),
-            Text(kos.alamat),
-            const SizedBox(height: 8),
-            Text('Rp ${kos.hargaPerBulan} / bulan'),
-            const SizedBox(height: 8),
-            Text(
-              penuh ? 'Kamar penuh' : 'Kamar tersedia: ${kos.kamarTersedia}',
-            ),
-            const SizedBox(height: 24),
+      body: Column(
+        children: [
+          KosFoto(kos: kos),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    kos.nama,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(kos.alamat),
+                  const SizedBox(height: 8),
+                  Text('Rp ${kos.hargaPerBulan} / bulan'),
+                  const SizedBox(height: 8),
+                  Text(
+                    penuh ? 'Kamar penuh' : 'Kamar tersedia: ${kos.kamarTersedia}',
+                  ),
+                  const SizedBox(height: 24),
 
-            if (_bookingTerakhir != null) _buildKartuBooking(_bookingTerakhir!),
+                  if (_bookingTerakhir != null)
+                    _buildKartuBooking(_bookingTerakhir!),
 
-            const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton(
-                onPressed: penuh ? null : _bukaFormBooking,
-                child: Text(penuh ? 'Kamar Penuh' : 'Booking Sekarang'),
+                  const Spacer(),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      onPressed: penuh ? null : _bukaFormBooking,
+                      child: Text(penuh ? 'Kamar Penuh' : 'Booking Sekarang'),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildKartuBooking(Booking b) {
+    final cs = Theme.of(context).colorScheme;
     return Card(
-      color: Colors.green.shade50,
+      color: cs.tertiaryContainer,
       child: ListTile(
+        leading: Icon(
+          Icons.check_circle_outline,
+          color: cs.onTertiaryContainer,
+        ),
         title: Text('Booking diajukan: ${b.durasiBulan} bulan'),
         subtitle: Text(
-          'Total Rp ${b.totalHarga}\nStatus: ${b.status}\nCatatan: ${b.catatan}',
+          'Total Rp ${b.totalHarga}\n'
+          'Status: ${b.status}\n'
+          '${b.catatan != null ? 'Catatan: ${b.catatan}' : ''}',
         ),
         isThreeLine: true,
+        textColor: cs.onTertiaryContainer,
       ),
     );
   }

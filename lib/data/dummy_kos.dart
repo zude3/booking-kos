@@ -7,6 +7,7 @@ const List<Kos> dummyKos = [
     alamat: 'dekat terowongan bawah gerbang unand',
     hargaPerBulan: 700000,
     kamarTersedia: 5,
+    foto: 'assets/images/kos1.png',
   ),
   Kos(
     id: 2,
@@ -14,6 +15,7 @@ const List<Kos> dummyKos = [
     alamat: 'di bawah BC nomor 8',
     hargaPerBulan: 1200000,
     kamarTersedia: 2,
+    foto: 'assets/images/kos2.jpg',
   ),
   Kos(
     id: 3,
@@ -21,5 +23,6 @@ const List<Kos> dummyKos = [
     alamat: 'Jl. Pisang no 12 di samping pos polisi',
     hargaPerBulan: 2000000,
     kamarTersedia: 0,
+    foto: 'assets/images/kos3.jpeg',
   ),
 ];
